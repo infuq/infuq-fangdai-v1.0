@@ -4,530 +4,475 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>房贷计算器2026年 - 房贷计算在线工具</title>
     <meta name="keywords" content="贷款计算器在线工具,LPR,公积金贷款计算器,房贷计算器2026,商贷计算器,loan,房贷利率计算器,等额本息计算器,等额本金计算器,提前还款房贷计算器,房贷计算器在线计算"/>
-    <meta name="description"
-          content="房贷计算器2026在线免费工具,提供2026房贷利率和房贷计算公式,包含购房贷款计算器、LPR、loan、等额本息计算器、房贷利率计算器、商贷计算器、公积金贷款计算器、提前还款计算器等"/>
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1.0,maximum-scale=5.0,minimum-scale=1.0,user-scalable=yes"/>
-    <link rel="icon" sizes="114x114" href="images/favicon.png">
-    <link rel="stylesheet" type="text/css" href="./css/my-common.min.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/my-houseloan.min.css"/>
-    <script type="text/javascript" src="./js/zepto.min.js" async></script>
-    <script type="text/javascript" src="./js/houseloan_calculator.js" async></script>
-    <script src="./js/common_tpl.js" type="text/javascript" async></script>
- 
+    <meta name="description" content="房贷计算器2026在线免费工具,提供2026房贷利率和房贷计算公式,包含购房贷款计算器,LPR,loan等额本息计算器,房贷利率计算器,商贷计算器,公积金贷款计算器,提前还款计算器等"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=5.0,minimum-scale=1.0,user-scalable=yes"/>
+    <link rel="icon" href="./favicon.png">
+    <link rel="stylesheet" type="text/css" href="./r/css/my-common.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./r/css/my-houseloan.min.css"/>
+    
+    <!-- 组件 -->
+    <link href="./r/libs/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" media="screen" type="text/css" />
+    <link href="./resources/element-ui@2.15.2/index.css" rel="stylesheet" />
+    <!-- 组件 -->
+    <script src="./resources/jQuery-3.7.1/jquery-3.7.1.min.js"></script>
+    <script src="./resources/axios@0.21.1/axios.min.js"></script>
+    <script src="./resources/vue@2.6.14/vue.js"></script>
+    <script src="./resources/element-ui@2.15.2/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.3/html2canvas.min.js"></script>
+
+    <script type="text/javascript" src="./r/js/houseloan_calculator.js" async></script>
+    
+
+    <!-- 百度统计 -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?6f180b04079b9168069a4510f08015e7";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 
     <script type="application/ld+json">
         {
-          "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          "name": "房贷计算器工具",
-          "applicationCategory": "FinanceApplication",
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.3",
-            "ratingCount": "8864"
-          },
-          "offers": {
-            "@type": "Offer",
-            "price": "0"
-          }
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "url": "http://fangdai.infuq.com/",
+            "publisher": {
+                "@type": "Person",
+                "name": "壹木十行",
+                "url": "http://fangdai.infuq.com/",
+                "logo": "http://fangdai.infuq.com/favicon.png"
+            }
         }
     </script>
-
-
-
-
-
-
+        
 </head>
 <body>
-<div class="header">
-    <div class="container">
-        <div class="logo">
-            <a href="/"><img src="./images/logo.png" style="width: 240px;height: 60px;" title="房贷计算器"></a>
+
+
+    <div id="app" style="display: flex; flex-direction: column; min-height: 100vh; width: 100%;">
+        <div class="header-container">
+
         </div>
-    </div>
-</div>
-<div class="container">
-    <div class="calculator">
-        <div view="calc_input" style="display:block;">
-            <div class="ui-bar" skin="title">
-                <at class="title">
-                    房贷计算器2026
-                    <div class="right">
-                        <a class="ui-btn" skin="blue mini i-home" href="/"></a>
+        
+        <div class="container">
+            <div class="calculator" style="margin: 0 5px;">
+                <div id="website" style="width: 100%; display: flex; align-items: center; justify-content: center; height: 40px; font-size: 20px; color: blue; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';">
+                    
+                </div>
+                <!-- 输入内容 -->
+                <div view="calc_input" style="display:block;">
+                    <div class="ui-bar" skin="title">
+                        <div class="title">房贷计算器({{cur_year}})</div>
                     </div>
-                </at>
-            </div>
-            <nav class="switch-tabs big-switch-tabs">
-                <ul style="cursor: pointer;">
-                    <li id="business_calc" class="tab select-tab">
-                        <div>商业贷款计算器</div>
-                    </li>
-                    <li id="PAF_calc" class="tab normal-tab">
-                        <div>公积金贷款计算器</div>
-                    </li>
-                    <li id="mix_calc" class="tab normal-tab">
-                        <div>组合贷款计算器</div>
-                    </li>
-                </ul>
-            </nav>
-            <div class="input-fields" wrap="h10">
-                <ul>
-                    <li id="business_sum_line" class="field-wrap">
-                        <label>商业贷款</label>
-                        <div class="field">
-                            <div class="ui-text" data-tail="万元">
-                                <input type="number" id="business_sum" value="100"></div>
+                    <div style="border: 1px solid #DCDFE6; margin-top: 10px; border-radius: 5px;">
+                        <nav class="switch-tabs big-switch-tabs">
+                            <ul style="cursor: pointer;">
+                                <li id="business_calc" class="tab select-tab">
+                                    <div>商业贷款模式</div>
+                                </li>
+                                <li id="PAF_calc" class="tab normal-tab">
+                                    <div>公积金贷款模式</div>
+                                </li>
+                                <li id="mix_calc" class="tab normal-tab">
+                                    <div>组合贷款模式</div>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="input-fields" wrap="h10">
+                            <ul>
+                                <span id="business_sum_line_divider">
+                                    <el-divider content-position="left">商业贷款</el-divider>
+                                </span>                        
+                                <li id="business_sum_line" class="field-wrap">
+                                    <div class="field">
+                                        <div class="ui-text" data-tail="万元">
+                                            <input type="number" id="business_sum" value="100">
+                                        </div>
+                                    </div>
+                                </li>
+                                                            
+                                <span id="PAF_sum_line_divider" style="display:none">
+                                    <el-divider content-position="left">公积金贷款</el-divider>
+                                </span>
+                                <li id="PAF_sum_line" class="field-wrap" style="display:none">                        
+                                    
+                                    <div class="field">
+                                        <div class="ui-text" data-tail="万元">
+                                            <input type="number" id="PAF_sum" value="80"></div>
+                                    </div>
+                                </li>
+                                 
+                                <el-divider content-position="left">贷款期限</el-divider>
+                                <li class="field-wrap">
+                                    
+                                    <div class="field">
+                                        <div class="ui-select">
+                                            <div class="value-bar">
+                                                <span id="loan_period_select_bar" class="text" value="20">20年(240期)</span>
+                                                <span class="icon-sps tail-icon"></span>
+                                            </div>
+                                            
+                                            <select id="loan_period_select">
+                                                <option value="0">&nbsp;&nbsp;半年(6期)</option>
+                                                <option value="1">&nbsp;&nbsp;1年(12期)</option>
+                                                <option value="2">&nbsp;&nbsp;2年(24期)</option>
+                                                <option value="3">&nbsp;&nbsp;3年(36期)</option>
+                                                <option value="4">&nbsp;&nbsp;4年(48期)</option>
+                                                <option value="5">&nbsp;&nbsp;5年(60期)</option>
+                                                <option value="6">&nbsp;&nbsp;6年(72期)</option>
+                                                <option value="7">&nbsp;&nbsp;7年(84期)</option>
+                                                <option value="8">&nbsp;&nbsp;8年(96期)</option>
+                                                <option value="9">&nbsp;&nbsp;9年(108期)</option>
+                                                <option value="10">&nbsp;&nbsp;10年(120期)</option>
+                                                <option value="11">&nbsp;&nbsp;11年(132期)</option>
+                                                <option value="12">&nbsp;&nbsp;12年(144期)</option>
+                                                <option value="13">&nbsp;&nbsp;13年(156期)</option>
+                                                <option value="14">&nbsp;&nbsp;14年(168期)</option>
+                                                <option value="15">&nbsp;&nbsp;15年(180期)</option>
+                                                <option value="16">&nbsp;&nbsp;16年(192期)</option>
+                                                <option value="17">&nbsp;&nbsp;17年(204期)</option>
+                                                <option value="18">&nbsp;&nbsp;18年(216期)</option>
+                                                <option value="19">&nbsp;&nbsp;19年(228期)</option>
+                                                <option value="20" selected="selected">&nbsp;&nbsp;20年(240期)</option>
+                                                <option value="21">&nbsp;&nbsp;21年(252期)</option>
+                                                <option value="22">&nbsp;&nbsp;22年(264期)</option>
+                                                <option value="23">&nbsp;&nbsp;23年(276期)</option>
+                                                <option value="24">&nbsp;&nbsp;24年(288期)</option>
+                                                <option value="25">&nbsp;&nbsp;25年(300期)</option>
+                                                <option value="26">&nbsp;&nbsp;26年(312期)</option>
+                                                <option value="27">&nbsp;&nbsp;27年(324期)</option>
+                                                <option value="28">&nbsp;&nbsp;28年(336期)</option>
+                                                <option value="29">&nbsp;&nbsp;29年(348期)</option>
+                                                <option value="30">&nbsp;&nbsp;30年(360期)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+        
+                                <span id="business_rate_select_line_divider">
+                                    <el-divider content-position="left">商贷利率</el-divider>
+                                </span>                        
+                                <li id="business_rate_select_line" class="field-wrap">
+                                    
+                                    <div class="field long-field" id="business_rate_select_field">
+                                        <div class="ui-select">
+                                            <div class="value-bar">
+                                                <span id="business_rate_select_bar" class="text" value="12">最新基准利率</span>
+                                                <span class="icon-sps tail-icon"></span>
+                                            </div>
+                                            <select id="business_rate_select" input-method="auto">
+                                                <option value="-1">&nbsp;&nbsp;手动输入</option>
+                                                <option value="12" data-key="18-1-1" selected="selected">&nbsp;&nbsp;最新基准利率</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="field short-field" id="business_discount_field">
+                                        <div class="ui-select">
+                                            <div class="value-bar">
+                                                <span id="business_discount_bar" class="text" data-discount="1.0">无折扣</span>
+                                                <span class="icon-sps tail-icon"></span>
+                                            </div>
+                                            <select id="business_discount">
+                                                <option value="0" data-discount="1.0" selected="selected">&nbsp;&nbsp;无折扣</option>
+                                                <option value="10" data-discount="1.2">&nbsp;&nbsp;1.2倍</option>
+                                                <option value="9" data-discount="1.15">&nbsp;&nbsp;1.15倍</option>
+                                                <option value="8" data-discount="1.1">&nbsp;&nbsp;1.1倍</option>
+                                                <option value="7" data-discount="1.05">&nbsp;&nbsp;1.05倍</option>
+                                                <option value="6" data-discount="0.95">&nbsp;&nbsp;95折</option>
+                                                <option value="5" data-discount="0.9">&nbsp;&nbsp;9折</option>
+                                                <option value="4" data-discount="0.85">&nbsp;&nbsp;85折</option>
+                                                <option value="3" data-discount="0.8">&nbsp;&nbsp;8折</option>
+                                                <option value="2" data-discount="0.75">&nbsp;&nbsp;75折</option>
+                                                <option value="1" data-discount="0.7">&nbsp;&nbsp;7折</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li id="business_rate_value_line" class="field-wrap">
+                                    <div class="field">
+                                        <div class="ui-text rate-text" data-tail="%">
+                                            <input type="number" id="business_rate" value="4.2"></div>
+                                    </div>
+                                </li>
+        
+                                <span id="PAF_rate_line_divider" style="display:none">
+                                    <el-divider content-position="left">公积金利率</el-divider>
+                                </span>
+                                <li id="PAF_rate_line" class="field-wrap" style="display:none">                                    
+                                    <div class="field long-field">
+                                        <div class="ui-select">
+                                            <div class="value-bar">
+                                                <span id="PAF_rate_select_bar" class="text" value="12">最新基准利率</span>
+                                                <span class="icon-sps tail-icon"></span>
+                                            </div>
+                                            <select id="PAF_rate_select" input-method="auto">
+                                                <option value="-1">&nbsp;&nbsp;手动输入</option>
+                                                <option value="12" data-key="18-1-1" selected="selected">&nbsp;&nbsp;最新基准利率</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="field short-field">
+                                        <div class="ui-text" data-tail="%">
+                                            <input type="number" id="PAF_rate" value="3.25">
+                                        </div>
+                                    </div>
+                                </li>
+    
+                            </ul>
                         </div>
-                    </li>
-                    <li id="PAF_sum_line" class="field-wrap" style="display:none">
-                        <label>公积金贷款</label>
-                        <div class="field">
-                            <div class="ui-text" data-tail="万元">
-                                <input type="number" id="PAF_sum" value="80"></div>
+    
+                    </div>
+
+
+                    <div class="calbtn-wrap" style="margin-top: 15px; display: flex; flex-direction: row;">
+                        <div id="calculate" style="width: 100%; margin: 0 5px;">
+                            <el-button type="primary" plain style="width: 100%;">计&nbsp;算</el-button>
                         </div>
-                    </li>
-                    <li class="field-wrap">
-                        <label>贷款期限</label>
-                        <div class="field">
-                            <div class="ui-select">
-                                <div class="value-bar">
-                                    <span id="loan_period_select_bar" class="text" value="20">20年（240期）</span>
-                                    <span class="icon-sps tail-icon"></span>
-                                </div>
-                                <select id="loan_period_select">
-                                    <option value="0">半年（6期）</option>
-                                    <option value="1">1年（12期）</option>
-                                    <option value="2">2年（24期）</option>
-                                    <option value="3">3年（36期）</option>
-                                    <option value="4">4年（48期）</option>
-                                    <option value="5">5年（60期）</option>
-                                    <option value="6">6年（72期）</option>
-                                    <option value="7">7年（84期）</option>
-                                    <option value="8">8年（96期）</option>
-                                    <option value="9">9年（108期）</option>
-                                    <option value="10">10年（120期）</option>
-                                    <option value="11">11年（132期）</option>
-                                    <option value="12">12年（144期）</option>
-                                    <option value="13">13年（156期）</option>
-                                    <option value="14">14年（168期）</option>
-                                    <option value="15">15年（180期）</option>
-                                    <option value="16">16年（192期）</option>
-                                    <option value="17">17年（204期）</option>
-                                    <option value="18">18年（216期）</option>
-                                    <option value="19">19年（228期）</option>
-                                    <option value="20" selected="selected">20年（240期）</option>
-                                    <option value="21">21年（252期）</option>
-                                    <option value="22">22年（264期）</option>
-                                    <option value="23">23年（276期）</option>
-                                    <option value="24">24年（288期）</option>
-                                    <option value="25">25年（300期）</option>
-                                    <option value="26">26年（312期）</option>
-                                    <option value="27">27年（324期）</option>
-                                    <option value="28">28年（336期）</option>
-                                    <option value="29">29年（348期）</option>
-                                    <option value="30">30年（360期）</option>
-                                </select>
+                        <div style="width: 100%; margin: 0 5px;">
+                            <el-button type="primary" plain style="width: 100%;" @click="onClickConvertToImage()">结果转换为图片并下载</el-button>
+                        </div>
+                    </div>
+    
+                </div>
+                <!-- 结果 -->
+                <div class="calc-result hide" view="calc_result" style="flex: 1; ">
+    
+                    <el-divider>计算结果</el-divider>
+    
+                    <div style="border: 1px solid #DCDFE6; margin-top: 10px; border-radius: 5px;">
+                        
+                        <!-- tab -->
+                        <div class="sticky-element">
+                            <nav class="switch-tabs">
+                                <ul>
+                                    <li id="result_tab_1" class="result-tab normal-tab" tab-id="1">
+                                        <a href="javascript:void(0)">等额本息</a>
+                                    </li>
+                                    <li id="result_tab_2" class="result-tab normal-tab" tab-id="2">
+                                        <a href="javascript:void(0)">等额本金</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <!-- 等额本息 -->
+                            <div id="result_data_1" class="result-data hide">
+                                <ul class="result-list" style="padding: 10px 16px;">
+                                    <li class="group-tit" style="padding: 0 10px;">还款数据摘要</li>
+                                    <li id="business_interest_total_debx" class="hide">
+                                        <div class="item-name">商贷利息</div>
+                                        <div id="business_interest_total_1" class="item-value"></div>
+                                    </li>
+                                    <li id="PAF_interest_total_debx" class="hide">
+                                        <div class="item-name">公积金利息</div>
+                                        <div id="PAF_interest_total_1" class="item-value"></div>
+                                    </li>
+                                    <li>
+                                        <div class="item-name">利息总额</div>
+                                        <div id="interest_total_1" class="item-value"></div>
+                                    </li>
+                                    <li>
+                                        <div class="item-name">还款总额</div>
+                                        <div id="repay_total_1" class="item-value"></div>
+                                    </li>
+                                    <li>
+                                        <div class="item-name">月均还款额(月供)</div>
+                                        <div id="repay_monthly_1" class="item-value"></div>
+                                    </li>
+                                    <li>
+                                        <div class="item-name">最高月付利息</div>
+                                        <div id="interest_monthly_1" class="item-value"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- 等额本金 -->
+                            <div id="result_data_2" class="result-data hide">
+                                <ul class="result-list" style="padding: 10px 16px;">
+                                    <li class="group-tit" style="padding: 0 10px;">还款数据摘要</li>
+                                    <li id="business_interest_total_debj" class="hide">
+                                        <div class="item-name">商贷利息</div>
+                                        <div id="business_interest_total_2" class="item-value"></div>
+                                    </li>
+                                    <li id="PAF_interest_total_debj" class="hide">
+                                        <div class="item-name">公积金利息</div>
+                                        <div id="PAF_interest_total_2" class="item-value"></div>
+                                    </li>
+                                    <li>
+                                        <div class="item-name">利息总额</div>
+                                        <div id="interest_total_2" class="item-value"></div>
+                                    </li>
+                                    <li>
+                                        <div class="item-name">还款总额</div>
+                                        <div id="repay_total_2" class="item-value"></div>
+                                    </li>
+                                    <li>
+                                        <div class="item-name">最高月供</div>
+                                        <div id="repay_monthly_2" class="item-value"></div>
+                                    </li>
+                                    <li>
+                                        <div class="item-name">最高月付利息</div>
+                                        <div id="interest_monthly_2" class="item-value"></div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    </li>
-                    <li id="business_rate_select_line" class="field-wrap">
-                        <label>商贷利率</label>
-                        <div class="field long-field" id="business_rate_select_field">
-                            <div class="ui-select">
-                                <div class="value-bar">
-                                    <span id="business_rate_select_bar" class="text" value="12">最新基准利率</span>
-                                    <span class="icon-sps tail-icon"></span>
-                                </div>
-                                <select id="business_rate_select" input-method="auto">
-                                    <option value="-1">手动输入</option>
-                                    <option value="12" data-key="18-1-1" selected="selected">最新基准利率</option>
-                                </select>
+                    
+    
+                        <div class="data-detail hide" view="data_detail">
+                            <!-- 等额本息更多 -->
+                            <div id="data_detail_1" class="data-container wid2 clear hide" style="padding: 10px 16px; margin-top: 10px;">
+                                <div class="group-tit">还款数据明细</div>
+                                <table class="data-table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: left; width: 12%;">期次</th>
+                                            <th style="text-align: left; width: 22%;">偿还本息</th>
+                                            <th style="text-align: left; width: 22%;">偿还利息</th>
+                                            <th style="text-align: left; width: 22%;">偿还本金</th>
+                                            <th style="text-align: left; width: 22%;">剩余本金</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="standard_data_table_1"></tbody>
+                                </table>
+                            </div>
+                            <!-- 等额本金更多 -->
+                            <div id="data_detail_2" class="data-container wid2 clear hide" style="padding: 10px 16px; margin-top: 10px;">
+                                <div class="group-tit">还款数据明细</div>
+                                <table class="data-table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: left; width: 12%;">期次</th>
+                                            <th style="text-align: left; width: 22%;">偿还本息</th>
+                                            <th style="text-align: left; width: 22%;">偿还利息</th>
+                                            <th style="text-align: left; width: 22%;">偿还本金</th>
+                                            <th style="text-align: left; width: 22%;">剩余本金</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="standard_data_table_2"></tbody>
+                                </table>
                             </div>
                         </div>
-                        <div class="field short-field" id="business_discount_field">
-                            <div class="ui-select">
-                                <div class="value-bar">
-                                    <span id="business_discount_bar" class="text" data-discount="1.0">无折扣</span>
-                                    <span class="icon-sps tail-icon"></span>
-                                </div>
-                                <select id="business_discount">
-                                    <option value="0" data-discount="1.0" selected="selected">无折扣</option>
-                                    <option value="10" data-discount="1.2">1.2倍</option>
-                                    <option value="9" data-discount="1.15">1.15倍</option>
-                                    <option value="8" data-discount="1.1">1.1倍</option>
-                                    <option value="7" data-discount="1.05">1.05倍</option>
-                                    <option value="6" data-discount="0.95">95折</option>
-                                    <option value="5" data-discount="0.9">9折</option>
-                                    <option value="4" data-discount="0.85">85折</option>
-                                    <option value="3" data-discount="0.8">8折</option>
-                                    <option value="2" data-discount="0.75">75折</option>
-                                    <option value="1" data-discount="0.7">7折</option>
-                                </select>
-                            </div>
+
+                        <div style="color: #6C6C6D; padding: 10px 16px; display: flex; align-items: center; height: 30px; line-height: 30px;">
+                            <div><i class="el-icon-warning-outline" style="top: 0;"></i></div>
+                            <div style="font-size: 14px;"><span>&nbsp;计算结果仅供参考</span></div>
                         </div>
-                    </li>
-                    <li id="business_rate_value_line" class="field-wrap">
-                        <label></label>
-                        <div class="field">
-                            <div class="ui-text rate-text" data-tail="%">
-                                <input type="number" id="business_rate" value="4.2"></div>
-                        </div>
-                    </li>
-                    <li id="PAF_rate_line" class="field-wrap" style="display:none">
-                        <label>公积金利率</label>
-                        <div class="field long-field">
-                            <div class="ui-select">
-                                <div class="value-bar">
-                                    <span id="PAF_rate_select_bar" class="text" value="12">最新基准利率</span>
-                                    <span class="icon-sps tail-icon"></span>
-                                </div>
-                                <select id="PAF_rate_select" input-method="auto">
-                                    <option value="-1">手动输入</option>
-                                    <option value="12" data-key="18-1-1" selected="selected">最新基准利率</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="field short-field">
-                            <div class="ui-text" data-tail="%">
-                                <input type="number" id="PAF_rate" value="3.25"></div>
-                        </div>
-                    </li>
-                    <li class="field-wrap">
-                        <label>还款方式</label>
-                        <div class="field mid-field">
-                            <label class="repay-method">
-                                <input type="radio" name="repayType" id="repay_radio1" value="1" checked="checked">&nbsp;等额本息</label>
-                        </div>
-                        <div class="field mid-field">
-                            <label class="repay-method">
-                                <input type="radio" name="repayType" id="repay_radio2" value="2">&nbsp;等额本金</label>
-                        </div>
-                    </li>
-                </ul>
-                <div class="calbtn-wrap">
-                    <a id="calculate" class="ui-btn" skin="blue full">计&nbsp;算</a>
-                </div>
-            </div>
-            <div wrap="t15">
-                <div class="use-help">
-                    <p>
-                        买房是人生中的大事，选择合适的房贷是关键。房贷计算器官网开发的房贷计算器2026是一款非常受欢迎的工具，每天超过88万人使用它来计算和咨询房屋贷款，包括提前还款计算器和公积金贷款计算器。无论您是想要了解房贷利率、首付比例、贷款期限等，房贷计算器都能为您提供详细的数据和计算结果。此外，如果您在线咨询贷款时遇到任何问题或疑虑，也可以使用贷款计算器进行详细咨询和了解。总之，选择合适的房贷产品，根据自己的实际情况选择最合适的还款方式，合理规划自己的财务，是买房前必须要做的一项重要准备工作。                    </p>
-                </div>
-                <div id="business_atc_recmd_mod" style="display:block;">
-                    <div>
-                        <div class="mod-tit" wrap="h15 b10">
-                            <p>房贷知识</p>
-                        </div>
-                        <div class="ui-list">
-                            <a class="list-item" href="./post/1.html">
-                                <div class="detail" doc="desc">
-                                    <p class="atc-title">买房按揭办不下来能退首付吗？</p>
-                                </div>
-                                <i data-icon="&gt;"></i>
-                            </a>
-                            <a class="list-item" href="./post/2.html">
-                                <div class="detail" doc="desc">
-                                    <p class="atc-title">还房贷，等额本金和等额本息哪个好？</p>
-                                </div>
-                                <i data-icon="&gt;"></i>
-                            </a>
-                            <a class="list-item" href="./post/3.html">
-                                <div class="detail" doc="desc">
-                                    <p class="atc-title">公积金贷款计算器告诉你公积金和住房补贴有什么不同</p>
-                                </div>
-                                <i data-icon="&gt;"></i>
-                            </a>
-                            <a class="list-item" href="./post/4.html">
-                                <div class="detail" doc="desc">
-                                    <p class="atc-title">房贷还不上怎么办？</p>
-                                </div>
-                                <i data-icon="&gt;"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div id="PAF_atc_recmd_mod" class="hide">
-                    <div>
-                        <div class="mod-tit" wrap="h15 b10">
-                            <p>房贷知识</p>
-                        </div>
-                        <div class="ui-list">
-                            <a class="list-item" href="./post/1.html">
-                                <div class="detail" doc="desc">
-                                    <p class="atc-title">买房按揭办不下来能退首付吗？</p>
-                                </div>
-                                <i data-icon="&gt;"></i>
-                            </a>
-                            <a class="list-item" href="./post/2.html">
-                                <div class="detail" doc="desc">
-                                    <p class="atc-title">还房贷，等额本金和等额本息哪个好？</p>
-                                </div>
-                                <i data-icon="&gt;"></i>
-                            </a>
-                            <a class="list-item" href="./post/3.html">
-                                <div class="detail" doc="desc">
-                                    <p class="atc-title">公积金贷款计算器告诉你公积金和住房补贴有什么不同</p>
-                                </div>
-                                <i data-icon="&gt;"></i>
-                            </a>
-                            <a class="list-item" href="./post/4.html">
-                                <div class="detail" doc="desc">
-                                    <p class="atc-title">房贷还不上怎么办？</p>
-                                </div>
-                                <i data-icon="&gt;"></i>
-                            </a>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
+    
+            <!-- 回到顶部 -->
+            <template>
+                <el-backtop ></el-backtop>
+            </template>
         </div>
-        <div class="calc-result hide" view="calc_result">
-            <header class="ui-bar" skin="title">
-                <h1 class="title">计算结果</h1>
-                <div class="left">
-                    <a id="back_to_calc_input" class="ui-btn" skin="mini back" wrap="t5">返回</a>
-                </div>
-            </header>
-            <nav class="switch-tabs">
-                <ul>
-                    <li id="result_tab_1" class="result-tab normal-tab" tab-id="1">
-                        <a href="javascript:void(0)">等额本息</a>
-                    </li>
-                    <li id="result_tab_2" class="result-tab normal-tab" tab-id="2">
-                        <a href="javascript:void(0)">等额本金</a>
-                    </li>
-                </ul>
-            </nav>
-            <div id="result_data_1" class="result-data hide">
-                <ul class="result-list">
-                    <li class="group-tit">还款数据摘要</li>
-                    <li id="business_interest_total_debx" class="hide">
-                        <div class="item-name">商贷利息</div>
-                        <div id="business_interest_total_1" class="item-value"></div>
-                    </li>
-                    <li id="PAF_interest_total_debx" class="hide">
-                        <div class="item-name">公积金利息</div>
-                        <div id="PAF_interest_total_1" class="item-value"></div>
-                    </li>
-                    <li>
-                        <div class="item-name">利息总额</div>
-                        <div id="interest_total_1" class="item-value"></div>
-                    </li>
-                    <li>
-                        <div class="item-name">累计还款总额</div>
-                        <div id="repay_total_1" class="item-value"></div>
-                    </li>
-                    <li>
-                        <div class="item-name">每月月供</div>
-                        <div id="repay_monthly_1" class="item-value"></div>
-                    </li>
-                    <li>
-                        <div class="item-name">最高月付利息</div>
-                        <div id="interest_monthly_1" class="item-value"></div>
-                    </li>
-                </ul>
-                <div class="data-container wid2 clear">
-                    <div class="group-tit">还款数据明细</div>
-                    <table class="data-table table-striped">
-                        <thead>
-                        <tr>
-                            <th>期次</th>
-                            <th>偿还本息</th>
-                            <th>偿还利息</th>
-                            <th>偿还本金</th>
-                            <th>剩余本金</th>
-                        </tr>
-                        </thead>
-                        <tbody id="simple_data_table_1"></tbody>
-                    </table>
-                    <div class="view-more" data-detail="1">
-                        <div class="detail">
-                            <p class="txt">查看更多数据...</p>
-                        </div>
-                        <i data-icon="&gt;"></i>
-                    </div>
-                </div>
-            </div>
-            <div id="result_data_2" class="result-data hide">
-                <ul class="result-list">
-                    <li class="group-tit">还款数据摘要</li>
-                    <li id="business_interest_total_debj" class="hide">
-                        <div class="item-name">商贷利息</div>
-                        <div id="business_interest_total_2" class="item-value"></div>
-                    </li>
-                    <li id="PAF_interest_total_debj" class="hide">
-                        <div class="item-name">公积金利息</div>
-                        <div id="PAF_interest_total_2" class="item-value"></div>
-                    </li>
-                    <li>
-                        <div class="item-name">利息总额</div>
-                        <div id="interest_total_2" class="item-value"></div>
-                    </li>
-                    <li>
-                        <div class="item-name">累计还款总额</div>
-                        <div id="repay_total_2" class="item-value"></div>
-                    </li>
-                    <li>
-                        <div class="item-name">最高月供</div>
-                        <div id="repay_monthly_2" class="item-value"></div>
-                    </li>
-                    <li>
-                        <div class="item-name">最高月付利息</div>
-                        <div id="interest_monthly_2" class="item-value"></div>
-                    </li>
-                </ul>
-                <div class="data-container wid2 clear">
-                    <div class="group-tit">还款数据明细</div>
-                    <table class="data-table table-striped">
-                        <thead>
-                        <tr>
-                            <th>期次</th>
-                            <th>偿还本息</th>
-                            <th>偿还利息</th>
-                            <th>偿还本金</th>
-                            <th>剩余本金</th>
-                        </tr>
-                        </thead>
-                        <tbody id="simple_data_table_2"></tbody>
-                    </table>
-                    <div class="view-more" data-detail="2">
-                        <div class="detail">
-                            <p class="txt">查看更多数据...</p>
-                        </div>
-                        <i data-icon="&gt;"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="recal-btn" wrap="h10">
-                <a id="recalculate" class="ui-btn" skin="blue full">重新计算</a>
-            </div>
-            <div wrap="t15">
-                <div class="use-help">
-                    <p>
-                        2026买房计算月供当然是用房贷计算器官网开发的房贷计算器最新2026,每天超过1611万人在线计算和咨询房屋贷款,包括提前还款计算器和公积金贷款计算器.房贷计算,就用贷款计算器最新2026、房贷计算器2026、公积金贷款计算器。</p>
-                </div>
-                <div id="repay_atc_recmd_mod">
-                    <div>
-                        <div class="mod-tit" wrap="h15 b10">
-                            <p>房贷常识</p>
-                        </div>
-                        <div class="ui-list">
-                            <a class="list-item" href="./post/1.html">
-                                <div class="detail" doc="desc">
-                                    <p class="atc-title">买房按揭办不下来能退首付吗？</p>
-                                </div>
-                                <i data-icon="&gt;"></i>
-                            </a>
-                            <a class="list-item" href="./post/2.html">
-                                <div class="detail" doc="desc">
-                                    <p class="atc-title">还房贷，等额本金和等额本息哪个好？</p>
-                                </div>
-                                <i data-icon="&gt;"></i>
-                            </a>
-                            <a class="list-item" href="./post/3.html">
-                                <div class="detail" doc="desc">
-                                    <p class="atc-title">公积金贷款计算器告诉你公积金和住房补贴有什么不同</p>
-                                </div>
-                                <i data-icon="&gt;"></i>
-                            </a>
-                            <a class="list-item" href="./post/4.html">
-                                <div class="detail" doc="desc">
-                                    <p class="atc-title">房贷还不上怎么办？</p>
-                                </div>
-                                <i data-icon="&gt;"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="data_detail_bar" class="ui-bar-fixed hide">
-            <header class="ui-bar" skin="title">
-                <h1 class="title">数据明细</h1>
-                <div class="left">
-                    <a id="back_to_calc_result" class="ui-btn" skin="mini back" wrap="t5">返回</a>
-                </div>
-            </header>
-        </div>
-        <div class="data-detail hide" view="data_detail">
-            <div id="data_detail_1" class="data-container wid2 clear hide">
-                <table class="data-table table-striped">
-                    <thead>
-                    <tr>
-                        <th>期次</th>
-                        <th>偿还本息</th>
-                        <th>偿还利息</th>
-                        <th>偿还本金</th>
-                        <th>剩余本金</th>
-                    </tr>
-                    </thead>
-                    <tbody id="standard_data_table_1"></tbody>
-                </table>
-            </div>
-            <div id="data_detail_2" class="data-container wid2 clear hide">
-                <table class="data-table table-striped">
-                    <thead>
-                    <tr>
-                        <th>期次</th>
-                        <th>偿还本息</th>
-                        <th>偿还利息</th>
-                        <th>偿还本金</th>
-                        <th>剩余本金</th>
-                    </tr>
-                    </thead>
-                    <tbody id="standard_data_table_2"></tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="side">
-        <h3 class="title">房贷常识</h3>
-        <div class="ui-list">
-            <a class="list-item" href="./post/1.html">
-                <div class="detail" doc="desc">
-                    <p class="atc-title">买房按揭办不下来能退首付吗？</p>
-                </div>
-                <i data-icon="&gt;"></i>
-            </a>
-            <a class="list-item" href="./post/2.html">
-                <div class="detail" doc="desc">
-                    <p class="atc-title">还房贷，等额本金和等额本息哪个好？</p>
-                </div>
-                <i data-icon="&gt;"></i>
-            </a>
-            <a class="list-item" href="./post/3.html">
-                <div class="detail" doc="desc">
-                    <p class="atc-title">公积金贷款计算器告诉你公积金和住房补贴有什么不同</p>
-                </div>
-                <i data-icon="&gt;"></i>
-            </a>
-            <a class="list-item" href="./post/4.html">
-                <div class="detail" doc="desc">
-                    <p class="atc-title">房贷还不上怎么办？</p>
-                </div>
-                <i data-icon="&gt;"></i>
-            </a>
+        
+        <div class="footer">
+
         </div>
 
-        <h3 class="title">友情链接</h3>
-        <div class="links">
-            <a href="https://www.sina.com/" target="_blank">新浪财经</a>
-            <a href="https://fangdai.gitapp.cn" target="_blank">商业贷款计算器</a>
-            <a href="https://tool.gitapp.cn/" target="_blank">在线工具集</a>
-            <a href="https://ps.gitapp.cn/" target="_blank">在线ps</a>
-            <a href="https://fangdaijisuanqi.vip/" target="_blank">房贷利率计算器</a>
-            <a href="https://finance.yahoo.com/" target="_blank">雅虎财经</a>
-        </div>
     </div>
 
-</div>
-<div class="footer">
-    &copy; copyright by <a href="#">房贷计算器2026</a> - <a href="https://github.com/geeeeeeeek/fangdai">源码</a>
-    <script>
+
+    <script type="text/javascript">
+
+        var Main = {
+            data: function() {
+                return {
+                    cur_year: new Date().getFullYear(),
+                }
+            },
+            created: function () {                
+            },
+            methods: {
+                onClickConvertToImage() {
+
+                    const element = document.getElementById('app');
+
+                    const clonedElement = element.cloneNode(true); // 深度克隆节点
+                    // 替换克隆体中的所有输入框为div
+                    clonedElement.querySelectorAll('input, textarea').forEach(input => {
+                        const div = document.createElement('div');
+                        // 1. 复制所有样式(最简单的方法)
+                        div.style.cssText = window.getComputedStyle(input).cssText;
+                        // 2. 确保关键样式
+                        
+                        div.style.width = '100%';
+                        div.style.height = input.style.height;
+                        div.style.lineHeight = input.style.lineHeight;
+                        div.style.textIndent = '.5em'
+                        
+                        // 3. 复制内容
+                        div.textContent = input.value || input.placeholder;
+                        // 4. 复制类名
+                        div.className = input.className + ' html2canvas-fix';
+                        console.log('>>', div);
+                        // 5. 替换节点
+                        input.parentNode.replaceChild(div, input);
+                    });
+                    // 将克隆体插入到DOM外进行渲染
+                    clonedElement.style.position = 'fixed';
+                    clonedElement.style.left = '-9999px';
+
+                    const website = clonedElement.querySelector('#website');              
+                    website.textContent = '网址 https://fangdai.infuq.com'
+
+                    document.body.appendChild(clonedElement);
+
+
+
+                    html2canvas(clonedElement, {
+                        backgroundColor: '#ffffff', // 设置背景为白色
+                        scale: 2, // 提高缩放倍数以获得高清图片,默认为1
+                        useCORS: true // 尝试加载跨域图片(需图片服务器支持CORS)
+                    }).then(canvas => {
+                        // 1.截图
+                        const imgData = canvas.toDataURL('image/png');
+
+                        document.body.removeChild(clonedElement);
+                        this.website = ''
+
+                        // 2.下载图片. 创建隐藏的下载链接并触发点击
+                        const link = document.createElement('a');
+                        link.download = '房贷还款数据.png';
+                        link.href = imgData;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+
+                        // 也可以选择在新窗口打开图片预览
+                        // window.open(imgData);
+                    }).catch(err => {
+                        console.error('生成图片失败:', err);
+                    });
+                },
+            }
+        }
+        var Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+
+
+        $(document).ready(function() {
+            $(window).scroll(function() {
+                // 获取当前垂直滚动的像素数
+                var scrollTop = $(window).scrollTop();
+                // console.log('当前滚动位置：' + scrollTop);
+
+                var elementTop = $('.sticky-element').offset().top;
+
+                var windowTop = $(window).scrollTop();
+                var diffDistance = elementTop - windowTop;
+                // console.log('距离窗口顶部：' + diffDistance + 'px', elementTop, windowTop);
+
+            });
+        });
+        
     </script>
-</div>
+
+
+
 </body>
 </html>
 
