@@ -38,10 +38,10 @@
         {
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "url": "http://fangdai.infuq.com/",
+            "url": "https://fangdai.infuq.com/",
             "publisher": {
                 "@type": "Person",
-                "name": "壹木十行",
+                "name": "壹木十行 房贷计算器",
                 "url": "http://fangdai.infuq.com/",
                 "logo": "http://fangdai.infuq.com/favicon.png"
             }
@@ -57,7 +57,7 @@
 
         </div>
         
-        <div class="container">
+        <div class="container" :style="settingIfMobile('width: 98%;', 'width: 40%;')">
             <div class="calculator" style="margin: 0 5px;">
                 <div id="website" style="width: 100%; display: flex; align-items: center; justify-content: center; height: 40px; font-size: 20px; color: blue; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';">
                     
@@ -65,10 +65,10 @@
                 <!-- 输入内容 -->
                 <div view="calc_input" style="display:block;">
                     <div class="ui-bar" skin="title">
-                        <div class="title">房贷计算器({{cur_year}})</div>
+                        <div class="title" style='font-family: "PingFang SC", "Helvetica Neue", "Arial", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", "SimSun", sans-serif;'>房贷计算器({{cur_year}})</div>
                     </div>
                     <div style="border: 1px solid #DCDFE6; margin-top: 10px; border-radius: 5px;">
-                        <nav class="switch-tabs big-switch-tabs">
+                        <nav class="switch-tabs big-switch-tabs" :style="settingIfMobile('display: flex; padding: 10px 5px;', 'display: flex; padding: 10px 16px;')">
                             <ul style="cursor: pointer;">
                                 <li id="business_calc" class="tab select-tab">
                                     <div>商业贷款模式</div>
@@ -246,7 +246,7 @@
                         
                         <!-- tab -->
                         <div class="sticky-element">
-                            <nav class="switch-tabs">
+                            <nav class="switch-tabs" :style="settingIfMobile('display: flex; padding: 10px 5px;', 'display: flex; padding: 10px 16px;')">
                                 <ul>
                                     <li id="result_tab_1" class="result-tab normal-tab" tab-id="1">
                                         <a href="javascript:void(0)">等额本息</a>
@@ -258,29 +258,29 @@
                             </nav>
                             <!-- 等额本息 -->
                             <div id="result_data_1" class="result-data hide">
-                                <ul class="result-list" style="padding: 10px 16px;">
-                                    <li class="group-tit" style="padding: 0 10px;">还款数据摘要</li>
-                                    <li id="business_interest_total_debx" class="hide">
+                                <ul class="result-list" :style="settingIfMobile('padding: 10px 5px;', 'padding: 10px 16px;')">
+                                    <li class="group-tit" style="padding: 0 10px; border-bottom: 0;">还款数据摘要</li>
+                                    <li id="business_interest_total_debx" class="hide" style="padding: 0 10px;">
                                         <div class="item-name">商贷利息</div>
                                         <div id="business_interest_total_1" class="item-value"></div>
                                     </li>
-                                    <li id="PAF_interest_total_debx" class="hide">
+                                    <li id="PAF_interest_total_debx" class="hide" style="padding: 0 10px;">
                                         <div class="item-name">公积金利息</div>
                                         <div id="PAF_interest_total_1" class="item-value"></div>
                                     </li>
-                                    <li>
+                                    <li style="padding: 0 10px;">
                                         <div class="item-name">利息总额</div>
                                         <div id="interest_total_1" class="item-value"></div>
                                     </li>
-                                    <li>
+                                    <li style="padding: 0 10px;">
                                         <div class="item-name">还款总额</div>
                                         <div id="repay_total_1" class="item-value"></div>
                                     </li>
-                                    <li>
+                                    <li style="padding: 0 10px;">
                                         <div class="item-name">月均还款额(月供)</div>
                                         <div id="repay_monthly_1" class="item-value"></div>
                                     </li>
-                                    <li>
+                                    <li style="padding: 0 10px;">
                                         <div class="item-name">最高月付利息</div>
                                         <div id="interest_monthly_1" class="item-value"></div>
                                     </li>
@@ -288,29 +288,29 @@
                             </div>
                             <!-- 等额本金 -->
                             <div id="result_data_2" class="result-data hide">
-                                <ul class="result-list" style="padding: 10px 16px;">
-                                    <li class="group-tit" style="padding: 0 10px;">还款数据摘要</li>
-                                    <li id="business_interest_total_debj" class="hide">
+                                <ul class="result-list" :style="settingIfMobile('padding: 10px 5px;', 'padding: 10px 16px;')">
+                                    <li class="group-tit" style="padding: 0 10px; border-bottom: 0;">还款数据摘要</li>
+                                    <li id="business_interest_total_debj" class="hide" style="padding: 0 10px;">
                                         <div class="item-name">商贷利息</div>
                                         <div id="business_interest_total_2" class="item-value"></div>
                                     </li>
-                                    <li id="PAF_interest_total_debj" class="hide">
+                                    <li id="PAF_interest_total_debj" class="hide" style="padding: 0 10px;">
                                         <div class="item-name">公积金利息</div>
                                         <div id="PAF_interest_total_2" class="item-value"></div>
                                     </li>
-                                    <li>
+                                    <li style="padding: 0 10px;">
                                         <div class="item-name">利息总额</div>
                                         <div id="interest_total_2" class="item-value"></div>
                                     </li>
-                                    <li>
+                                    <li style="padding: 0 10px;">
                                         <div class="item-name">还款总额</div>
                                         <div id="repay_total_2" class="item-value"></div>
                                     </li>
-                                    <li>
+                                    <li style="padding: 0 10px;">
                                         <div class="item-name">最高月供</div>
                                         <div id="repay_monthly_2" class="item-value"></div>
                                     </li>
-                                    <li>
+                                    <li style="padding: 0 10px;">
                                         <div class="item-name">最高月付利息</div>
                                         <div id="interest_monthly_2" class="item-value"></div>
                                     </li>
@@ -321,8 +321,8 @@
     
                         <div class="data-detail hide" view="data_detail">
                             <!-- 等额本息更多 -->
-                            <div id="data_detail_1" class="data-container wid2 clear hide" style="padding: 10px 16px; margin-top: 10px;">
-                                <div class="group-tit">还款数据明细</div>
+                            <div id="data_detail_1" class="data-container wid2 clear hide" :style="settingIfMobile('padding: 10px 5px; margin-top: 10px;', 'padding: 10px 16px; margin-top: 10px;')" >
+                                <div class="group-tit" style="border-bottom: 0;">还款数据明细</div>
                                 <table class="data-table table-striped">
                                     <thead>
                                         <tr>
@@ -337,8 +337,8 @@
                                 </table>
                             </div>
                             <!-- 等额本金更多 -->
-                            <div id="data_detail_2" class="data-container wid2 clear hide" style="padding: 10px 16px; margin-top: 10px;">
-                                <div class="group-tit">还款数据明细</div>
+                            <div id="data_detail_2" class="data-container wid2 clear hide" :style="settingIfMobile('padding: 10px 5px; margin-top: 10px;', 'padding: 10px 16px; margin-top: 10px;')">
+                                <div class="group-tit" style="border-bottom: 0;">还款数据明细</div>
                                 <table class="data-table table-striped">
                                     <thead>
                                         <tr>
@@ -387,6 +387,15 @@
             created: function () {                
             },
             methods: {
+
+                isMobile() {
+                    let mobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
+                    return mobile;
+                },
+                settingIfMobile(mobileData, computerData) {
+                    return this.isMobile() ? mobileData : computerData;
+                },
+
                 onClickConvertToImage() {
 
                     const element = document.getElementById('app');

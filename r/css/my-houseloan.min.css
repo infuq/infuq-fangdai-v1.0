@@ -90,7 +90,6 @@ p {
 }
 
 .switch-tabs {
-	padding: 10px 16px;
 	position: relative;
 	z-index: 999
 }
@@ -191,17 +190,17 @@ p {
 
 .result-list li .item-name {
 	float: left;
-	font-size: 16px;
-	line-height: 44px;
+	font-size: 14px;
+	line-height: 30px;
 	width: 50%;
 }
 
 .result-list li .item-value {
 	color: #999;
 	float: right;
-	font-size: 16px;
-	line-height: 44px;
-	padding-right: 20px;
+	font-size: 14px;
+	line-height: 30px;
+	/* padding-right: 20px; */
 	text-align: right;
 	width: 40%
 }

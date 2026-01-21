@@ -143,6 +143,8 @@ function calculateAndShow(repayType) {
 
 function calculate(repayType) { // repayType表示偿还类型 1:等额本息  2:等额本金 
 
+    console.log(isMobile())
+
     // 等额本息
     if (repayType == 1) {
         calculate_debx();
@@ -188,9 +190,14 @@ function calculate_debx_singleLoan(a, b) {
     var m = 0,
         h = "",
         i = "";
-    for (d = 1; d <= loanPeriods; d++) c = a * b * (Math.pow(1 + b, loanPeriods) - Math.pow(1 + b, d - 1)) / (Math.pow(1 + b, loanPeriods) - 1), c = Math.round(100 * c) / 100, g = f - c, g = Math.round(100 * g) / 100, e = a * (Math.pow(1 + b, loanPeriods) -
+    if (isMobile()) {
+        for (d = 1; d <= loanPeriods; d++) c = a * b * (Math.pow(1 + b, loanPeriods) - Math.pow(1 + b, d - 1)) / (Math.pow(1 + b, loanPeriods) - 1), c = Math.round(100 * c) / 100, g = f - c, g = Math.round(100 * g) / 100, e = a * (Math.pow(1 + b, loanPeriods) -
         Math.pow(1 + b, d)) / (Math.pow(1 + b, loanPeriods) - 1), e = Math.round(100 * e) / 100, h += "<tr>", h = h + "<td>" + d + "</td>", h = h + "<td>" + f + "</td>", h = h + "<td>" + c + "</td>", h = h + "<td>" + g + "</td>", h = h + "<td>" + e + "</td>", h += "</tr>", 1 == d && (m = c), d == simpleDataTableMaxLines && (i = h);
-
+    } else {
+        for (d = 1; d <= loanPeriods; d++) c = a * b * (Math.pow(1 + b, loanPeriods) - Math.pow(1 + b, d - 1)) / (Math.pow(1 + b, loanPeriods) - 1), c = Math.round(100 * c) / 100, g = f - c, g = Math.round(100 * g) / 100, e = a * (Math.pow(1 + b, loanPeriods) -
+        Math.pow(1 + b, d)) / (Math.pow(1 + b, loanPeriods) - 1), e = Math.round(100 * e) / 100, h += "<tr>", h = h + "<td>第" + d + "期</td>", h = h + "<td>" + f + "</td>", h = h + "<td>" + c + "</td>", h = h + "<td>" + g + "</td>", h = h + "<td>" + e + "</td>", h += "</tr>", 1 == d && (m = c), d == simpleDataTableMaxLines && (i = h);
+    }
+    
     $("#standard_data_table_1").html("" + h);
     $("#repay_monthly_1").text(f + " 元");
     $("#interest_monthly_1").text(m + " 元");
@@ -221,8 +228,14 @@ function calculate_debx_doubleLoan(a, b, d, f) {
     var i = 0,
         k = "",
         l = "";
-    for (c = 1; c <= loanPeriods; c++) e = a * b * (Math.pow(1 + b, loanPeriods) - Math.pow(1 + b, c - 1)) / (Math.pow(1 + b, loanPeriods) - 1), e += d * f * (Math.pow(1 + f, loanPeriods) - Math.pow(1 + f, c - 1)) / (Math.pow(1 + f, loanPeriods) - 1), e = Math.round(100 * e) / 100, j = g - e, j = Math.round(100 * j) / 100, m = a * (Math.pow(1 + b, loanPeriods) - Math.pow(1 + b, c)) / (Math.pow(1 + b, loanPeriods) - 1), m += d * (Math.pow(1 + f, loanPeriods) - Math.pow(1 + f, c)) / (Math.pow(1 + f, loanPeriods) - 1), m = Math.round(100 * m) / 100, k += "<tr>", k = k + "<td>" + c + "</td>", k = k + "<td>" + g + "</td>",
-        k = k + "<td>" + e + "</td>", k = k + "<td>" + j + "</td>", k = k + "<td>" + m + "</td>", k += "</tr>", 1 == c && (i = e), c == simpleDataTableMaxLines && (l = k);
+    if (isMobile()) {
+        for (c = 1; c <= loanPeriods; c++) e = a * b * (Math.pow(1 + b, loanPeriods) - Math.pow(1 + b, c - 1)) / (Math.pow(1 + b, loanPeriods) - 1), e += d * f * (Math.pow(1 + f, loanPeriods) - Math.pow(1 + f, c - 1)) / (Math.pow(1 + f, loanPeriods) - 1), e = Math.round(100 * e) / 100, j = g - e, j = Math.round(100 * j) / 100, m = a * (Math.pow(1 + b, loanPeriods) - Math.pow(1 + b, c)) / (Math.pow(1 + b, loanPeriods) - 1), m += d * (Math.pow(1 + f, loanPeriods) - Math.pow(1 + f, c)) / (Math.pow(1 + f, loanPeriods) - 1), m = Math.round(100 * m) / 100, k += "<tr>", k = k + "<td>" + c + "</td>", k = k + "<td>" + g + "</td>",
+            k = k + "<td>" + e + "</td>", k = k + "<td>" + j + "</td>", k = k + "<td>" + m + "</td>", k += "</tr>", 1 == c && (i = e), c == simpleDataTableMaxLines && (l = k);
+    } else {
+        for (c = 1; c <= loanPeriods; c++) e = a * b * (Math.pow(1 + b, loanPeriods) - Math.pow(1 + b, c - 1)) / (Math.pow(1 + b, loanPeriods) - 1), e += d * f * (Math.pow(1 + f, loanPeriods) - Math.pow(1 + f, c - 1)) / (Math.pow(1 + f, loanPeriods) - 1), e = Math.round(100 * e) / 100, j = g - e, j = Math.round(100 * j) / 100, m = a * (Math.pow(1 + b, loanPeriods) - Math.pow(1 + b, c)) / (Math.pow(1 + b, loanPeriods) - 1), m += d * (Math.pow(1 + f, loanPeriods) - Math.pow(1 + f, c)) / (Math.pow(1 + f, loanPeriods) - 1), m = Math.round(100 * m) / 100, k += "<tr>", k = k + "<td>第" + c + "期</td>", k = k + "<td>" + g + "</td>",
+            k = k + "<td>" + e + "</td>", k = k + "<td>" + j + "</td>", k = k + "<td>" + m + "</td>", k += "</tr>", 1 == c && (i = e), c == simpleDataTableMaxLines && (l = k);
+    }     
+    
     $("#standard_data_table_1").html("" + k);
 
     $("#repay_monthly_1").text(g + " 元");
@@ -261,8 +274,13 @@ function calculate_debj_singleLoan(a, b) {
         h = 0,
         i = "",
         k = "";
-    for (d = 1; d <= loanPeriods; d++) c = a * b * (loanPeriods - d + 1) / loanPeriods, c = Math.round(100 * c) / 100, f = c + g, f = Math.round(100 * f) / 100, e = a * (loanPeriods - d) / loanPeriods, e = Math.round(100 * e) / 100, i += "<tr>", i = i + "<td>" + d + "</td>", i = i + "<td>" + f + "</td>", i = i + "<td>" +
-        c + "</td>", i = i + "<td>" + g + "</td>", i = i + "<td>" + e + "</td>", i += "</tr>", 1 == d && (m = f, h = c), d == simpleDataTableMaxLines && (k = i);
+    if (isMobile()) {
+        for (d = 1; d <= loanPeriods; d++) c = a * b * (loanPeriods - d + 1) / loanPeriods, c = Math.round(100 * c) / 100, f = c + g, f = Math.round(100 * f) / 100, e = a * (loanPeriods - d) / loanPeriods, e = Math.round(100 * e) / 100, i += "<tr>", i = i + "<td>" + d + "</td>", i = i + "<td>" + f + "</td>", i = i + "<td>" +
+            c + "</td>", i = i + "<td>" + g + "</td>", i = i + "<td>" + e + "</td>", i += "</tr>", 1 == d && (m = f, h = c), d == simpleDataTableMaxLines && (k = i);
+    } else {
+        for (d = 1; d <= loanPeriods; d++) c = a * b * (loanPeriods - d + 1) / loanPeriods, c = Math.round(100 * c) / 100, f = c + g, f = Math.round(100 * f) / 100, e = a * (loanPeriods - d) / loanPeriods, e = Math.round(100 * e) / 100, i += "<tr>", i = i + "<td>第" + d + "期</td>", i = i + "<td>" + f + "</td>", i = i + "<td>" +
+            c + "</td>", i = i + "<td>" + g + "</td>", i = i + "<td>" + e + "</td>", i += "</tr>", 1 == d && (m = f, h = c), d == simpleDataTableMaxLines && (k = i);
+    }
     $("#standard_data_table_2").html("" + i);
 
     $("#repay_monthly_2").text(m + " 元");
@@ -293,8 +311,13 @@ function calculate_debj_doubleLoan(a, b, d, f) {
         k = 0,
         l = "",
         n = "";
-    for (c = 1; c <= loanPeriods; c++) e = a * b * (loanPeriods - c + 1) / loanPeriods,
-        e += d * f * (loanPeriods - c + 1) / loanPeriods, e = Math.round(100 * e) / 100, g = e + j, g = Math.round(100 * g) / 100, m = a * (loanPeriods - c) / loanPeriods, m += d * (loanPeriods - c) / loanPeriods, m = Math.round(100 * m) / 100, l += "<tr>", l = l + "<td>" + c + "</td>", l = l + "<td>" + g + "</td>", l = l + "<td>" + e + "</td>", l = l + "<td>" + j + "</td>", l = l + "<td>" + m + "</td>", l += "</tr>", 1 == c && (i = g, k = e), c == simpleDataTableMaxLines && (n = l);
+    if (isMobile()) {
+        for (c = 1; c <= loanPeriods; c++) e = a * b * (loanPeriods - c + 1) / loanPeriods,
+            e += d * f * (loanPeriods - c + 1) / loanPeriods, e = Math.round(100 * e) / 100, g = e + j, g = Math.round(100 * g) / 100, m = a * (loanPeriods - c) / loanPeriods, m += d * (loanPeriods - c) / loanPeriods, m = Math.round(100 * m) / 100, l += "<tr>", l = l + "<td>" + c + "</td>", l = l + "<td>" + g + "</td>", l = l + "<td>" + e + "</td>", l = l + "<td>" + j + "</td>", l = l + "<td>" + m + "</td>", l += "</tr>", 1 == c && (i = g, k = e), c == simpleDataTableMaxLines && (n = l);
+    } else {
+        for (c = 1; c <= loanPeriods; c++) e = a * b * (loanPeriods - c + 1) / loanPeriods,
+            e += d * f * (loanPeriods - c + 1) / loanPeriods, e = Math.round(100 * e) / 100, g = e + j, g = Math.round(100 * g) / 100, m = a * (loanPeriods - c) / loanPeriods, m += d * (loanPeriods - c) / loanPeriods, m = Math.round(100 * m) / 100, l += "<tr>", l = l + "<td>第" + c + "期</td>", l = l + "<td>" + g + "</td>", l = l + "<td>" + e + "</td>", l = l + "<td>" + j + "</td>", l = l + "<td>" + m + "</td>", l += "</tr>", 1 == c && (i = g, k = e), c == simpleDataTableMaxLines && (n = l);
+    }
     $("#standard_data_table_2").html("" + l);
 
     $("#repay_monthly_2").text(i + " 元");
@@ -314,7 +337,10 @@ function showResult(repayType) {
 
 
 
-
+function isMobile() {    
+    let mobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
+    return mobile;
+}
 
 
 
